@@ -10,6 +10,10 @@ import reactor.core.publisher.Sinks;
 @Service
 public class OrderStatusPublisher {
 
+
+    //    -----------
+//    produce order-event
+//    -----------
     @Autowired
     private Sinks.Many<OrderEvent> orderSinks; //connect with Bean in Config
 
@@ -17,6 +21,10 @@ public class OrderStatusPublisher {
         OrderEvent orderEvent = new OrderEvent(orderRequestDto, orderStatus);
 
         orderSinks.tryEmitNext(orderEvent);
-
     }
+
+
+//    -----------
+//    produce order-event
+//    -----------
 }

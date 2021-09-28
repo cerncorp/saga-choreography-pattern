@@ -11,6 +11,9 @@ import java.util.function.Supplier;
 @Configuration
 public class OrderPublisherConfig {
 
+//    -----------
+//    produce order-event
+//    -----------
     @Bean
     public Sinks.Many<OrderEvent> orderSinks(){
         return Sinks.many().multicast().onBackpressureBuffer();
@@ -21,4 +24,8 @@ public class OrderPublisherConfig {
     public Supplier<Flux<OrderEvent>> orderSupplier(Sinks.Many<OrderEvent> sinks) {
         return sinks::asFlux;
     }
+
+//    -----------
+//    produce order-event
+//    -----------
 }

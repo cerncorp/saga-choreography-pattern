@@ -5,10 +5,12 @@ import com.javatechie.saga.commons.event.OrderStatus;
 import com.javatechie.saga.order.entity.PurchaseOrder;
 import com.javatechie.saga.order.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class OrderService {
 
     @Autowired
@@ -17,6 +19,10 @@ public class OrderService {
     @Autowired
     private OrderStatusPublisher orderStatusPublisher;
 
+
+    //    -----------
+//    produce order-event
+//    -----------
     @Transactional
     public PurchaseOrder createOrder(OrderRequestDto orderRequestDto) {
         var order = orderRepository.save(convertDtoToEntity(orderRequestDto));
@@ -39,4 +45,9 @@ public class OrderService {
         purchaseOrder.setPrice(dto.getAmount());
         return purchaseOrder;
     }
+
+
+//    -----------
+//    produce order-event
+//    -----------
 }
